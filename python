@@ -1,1 +1,11 @@
-dfsa
+
+#etree的用法
+import requests
+from lxml import etree
+ 
+url = 'https://dblp.org/pers/hd/p/Petersen:Karin'
+html = requests.get(url)
+html = etree.HTML(html.text) #初始化生成一个XPath解析对象
+items = html.xpath('//div[contains(@class,"data")]/span//text()')
+for i in items:
+    print(i)
